@@ -1,0 +1,99 @@
+main: 15 - Starting lifespan
+uvicorn.error: 62 - Application startup complete.
+uvicorn.access: 466 - 192.168.65.1:20039 - "GET /api/v1/users/me HTTP/1.1" 200
+uvicorn.access: 466 - 192.168.65.1:30967 - "GET /api/v1/users/me HTTP/1.1" 200
+uvicorn.access: 466 - 192.168.65.1:34990 - "GET /api/v1/users/1 HTTP/1.1" 403
+uvicorn.error: 258 - Shutting down
+uvicorn.error: 67 - Waiting for application shutdown.
+main: 19 - Stopping lifespan
+uvicorn.error: 76 - Application shutdown complete.
+uvicorn.error: 92 - Finished server process [6]
+main: 16 - Starting lifespan
+uvicorn.error: 62 - Application startup complete.
+uvicorn.access: 466 - 192.168.65.1:26288 - "GET /api/v1/users/me HTTP/1.1" 500
+uvicorn.error: 404 - Exception in ASGI application
+  + Exception Group Traceback (most recent call last):
+  |   File "/usr/local/lib/python3.11/site-packages/starlette/_utils.py", line 87, in collapse_excgroups
+  |     yield
+  |   File "/usr/local/lib/python3.11/site-packages/starlette/middleware/base.py", line 190, in __call__
+  |     async with anyio.create_task_group() as task_group:
+  |   File "/usr/local/lib/python3.11/site-packages/anyio/_backends/_asyncio.py", line 680, in __aexit__
+  |     raise BaseExceptionGroup(
+  | ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)
+  +-+---------------- 1 ----------------
+    | Traceback (most recent call last):
+    |   File "/usr/local/lib/python3.11/site-packages/uvicorn/protocols/http/httptools_impl.py", line 399, in run_asgi
+    |     result = await app(  # type: ignore[func-returns-value]
+    |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/usr/local/lib/python3.11/site-packages/uvicorn/middleware/proxy_headers.py", line 70, in __call__
+    |     return await self.app(scope, receive, send)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/usr/local/lib/python3.11/site-packages/fastapi/applications.py", line 1054, in __call__
+    |     await super().__call__(scope, receive, send)
+    |   File "/usr/local/lib/python3.11/site-packages/starlette/applications.py", line 123, in __call__
+    |     await self.middleware_stack(scope, receive, send)
+    |   File "/usr/local/lib/python3.11/site-packages/starlette/middleware/errors.py", line 186, in __call__
+    |     raise exc
+    |   File "/usr/local/lib/python3.11/site-packages/starlette/middleware/errors.py", line 164, in __call__
+    |     await self.app(scope, receive, _send)
+    |   File "/usr/local/lib/python3.11/site-packages/starlette/middleware/base.py", line 189, in __call__
+    |     with collapse_excgroups():
+    |   File "/usr/local/lib/python3.11/contextlib.py", line 158, in __exit__
+    |     self.gen.throw(typ, value, traceback)
+    |   File "/usr/local/lib/python3.11/site-packages/starlette/_utils.py", line 93, in collapse_excgroups
+    |     raise exc
+    |   File "/usr/local/lib/python3.11/site-packages/starlette/middleware/base.py", line 191, in __call__
+    |     response = await self.dispatch_func(request, call_next)
+    |                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/pet-project/utils/timing.py", line 12, in wrapper
+    |     logger.info(f'Completed in {process_time:.2f} seconds | Status code: {response.status_code}')
+    |                                                                           ^^^^^^^^^^^^^^^^^^^^
+    | AttributeError: 'coroutine' object has no attribute 'status_code'
+    +------------------------------------
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/uvicorn/protocols/http/httptools_impl.py", line 399, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/uvicorn/middleware/proxy_headers.py", line 70, in __call__
+    return await self.app(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/fastapi/applications.py", line 1054, in __call__
+    await super().__call__(scope, receive, send)
+  File "/usr/local/lib/python3.11/site-packages/starlette/applications.py", line 123, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/usr/local/lib/python3.11/site-packages/starlette/middleware/errors.py", line 186, in __call__
+    raise exc
+  File "/usr/local/lib/python3.11/site-packages/starlette/middleware/errors.py", line 164, in __call__
+    await self.app(scope, receive, _send)
+  File "/usr/local/lib/python3.11/site-packages/starlette/middleware/base.py", line 189, in __call__
+    with collapse_excgroups():
+  File "/usr/local/lib/python3.11/contextlib.py", line 158, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "/usr/local/lib/python3.11/site-packages/starlette/_utils.py", line 93, in collapse_excgroups
+    raise exc
+  File "/usr/local/lib/python3.11/site-packages/starlette/middleware/base.py", line 191, in __call__
+    response = await self.dispatch_func(request, call_next)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/pet-project/utils/timing.py", line 12, in wrapper
+    logger.info(f'Completed in {process_time:.2f} seconds | Status code: {response.status_code}')
+                                                                          ^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'coroutine' object has no attribute 'status_code'
+uvicorn.error: 258 - Shutting down
+uvicorn.error: 67 - Waiting for application shutdown.
+main: 20 - Stopping lifespan
+uvicorn.error: 76 - Application shutdown complete.
+uvicorn.error: 92 - Finished server process [7]
+main: 16 - Starting lifespan
+uvicorn.error: 62 - Application startup complete.
+main: 12 - Completed in 0.06 seconds | Status code: 200
+uvicorn.access: 466 - 192.168.65.1:28956 - "GET /api/v1/users/me HTTP/1.1" 200
+main: 12 - Completed in 0.02 seconds | Status code: 200
+uvicorn.access: 466 - 192.168.65.1:38104 - "GET /api/v1/users/me HTTP/1.1" 200
+uvicorn.error: 258 - Shutting down
+uvicorn.error: 67 - Waiting for application shutdown.
+main: 20 - Stopping lifespan
+uvicorn.error: 76 - Application shutdown complete.
+uvicorn.error: 92 - Finished server process [7]
